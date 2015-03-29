@@ -80,7 +80,7 @@ a:hover, a:visited, a:active {
 }
 
 .header_space {
-	height: 80px;
+	height: 95px;
 }
 
 /* ---- MENU ---- */
@@ -108,8 +108,9 @@ a:hover, a:visited, a:active {
 /* ---- LIST ---- */
 
 .container {
-	margin: 0px 25px 20px 25px;
-	padding: 0px;
+	width: 100%;
+	margin: 0px 0px 20px 0px;
+	padding: 0px 25px 0px 25px;
 }
 
 .list_item{
@@ -118,6 +119,11 @@ a:hover, a:visited, a:active {
 	background-color: #f2816d;
 	padding: 0px 10px 0px 10px;
 	margin-bottom: 4px;
+}
+
+.list_item button {
+	border: 0px ;
+	text-align: left;
 }
 
 /* ---- ITEM ---- */

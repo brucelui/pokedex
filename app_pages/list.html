@@ -4,63 +4,112 @@
 
 	<div class="container">
 
-		<div class="list_item">
-			<a href="#/025">#001 Bulbasaur</a>
+		<!-- Pokemon Item -->
+		<div class="itemitem" ng-if="currentPage == 1">
+			<!-- <a href="#/">BACK TO LIST</a> -->
+
+   			<div class="item_frame">
+   				<div class="item_window">
+   					<img src="" id="sprite">
+   				</div>
+   			</div>
+
+   			<div class="item_info">
+				#<span id="id">000</span>
+				</br><h1><span id="name">Pokemon</span></h1>
+				<p class="item_type">ELECTRIC</p>
+
+				<p><span class="description">Sum description yo.</span></p>
+			</div>
+
+			<!-- Base Stats -->
+			BASE STATS
+			<div class="item_stats">
+				<div class="stats_name">HP</div>
+				<div class="outerbar">
+					<div class="innerbar" style="width: 7%"></div>35</div>
+			</div>
+
+			<div class="item_stats">
+				<div class="stats_name">ATTACK</div>
+				<div class="outerbar">
+					<div class="innerbar" style="width: 12%"></div>55</div>
+			</div>	
+
+			<div class="item_stats">
+				<div class="stats_name">DEFENSE</div>
+				<div class="outerbar">
+					<div class="innerbar" style="width: 8%"></div>40</div>
+			</div>	
+
+			<div class="item_stats">
+				<div class="stats_name">SP ATTACK</div>
+				<div class="outerbar">
+					<div class="innerbar" style="width: 10%"></div>50</div>
+			</div>	
+
+			<div class="item_stats">
+				<div class="stats_name">SP DEFENSE</div>
+				<div class="outerbar">
+					<div class="innerbar" style="width: 9.8%"></div>50</div>
+			</div>	
+
+			<div class="item_stats">
+				<div class="stats_name">SPEED</div>
+				<div class="outerbar">
+					<div class="innerbar" style="width: 17.6%"></div>90</div>
+			</div>	
+
 		</div>
 
-		<div class="list_item">
-			<a href="#/025">#002 Ivysaur</a>
-		</div>
+		<!-- Pokemon List -->
+		<div class="listlist" ng-if="currentPage == 0">
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(1)">#001 Bulbasaur
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#003 Venasaur</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(2)">#002 Ivysaur
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#004 Charmander</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(3)">#003 Venasaur
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#005 Charmeleon</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(4)">#004 Charmander
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#006 Charizard</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(5)">#005 Charmeleon
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#007 Squirtal</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(6)">#006 Charizard
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#008 Warturtle</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(7)">#007 Squirtle
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#009 Blastoise</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(8)">#008 Wartortle
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#010 Caterpie</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(9)">#009 Blastoise
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#011 Metapod</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(10)">#010 Caterpie
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#012 Butterfree</a>
-		</div>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(11)">#011 Metapod
+			</div>
 
-		<div class="list_item">
-			<a href="#/025">#013 Weedle</a>
-		</div>
-
-		<div class="list_item">
-			<a href="#/025">#014 Cacoon</a>
-		</div>
-
-		<div class="list_item">
-			<a href="#/025">#015 Beedrle</a>
+			<div class="list_item">
+				<button class="list_item updateData" ng-click="updateOutput(12)">#012 Butterfree
+			</div>
 		</div>
 	</div>
