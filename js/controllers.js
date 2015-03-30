@@ -44,11 +44,16 @@ pokeDex.controller('pokeController', function($scope) {
         $scope.spdValue = btn;
 
         $scope.currentPage = 1;
+		console.log("Current Page " + $scope.currentPage);
         callAPokemon();
     };
 
     $('.menuicon').click(function() {
-    	if ($scope.currentPage == 1) {
+
+    	if ($scope.currentPage == 0) {
+		$scope.currentPage = 2;}
+
+		else {
 		$scope.currentPage = 0;}
 		console.log("Current Page " + $scope.currentPage);
 	});
