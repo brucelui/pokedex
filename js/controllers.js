@@ -35,7 +35,7 @@ pokeDex.controller('pokeController', function($scope) {
         $scope.nameValue = btn;
         $scope.spriteValue = btn + 1;
         $scope.typeValue = btn;
-        $scope.descriptionValue = btn * 15 + 1;
+        $scope.descriptionValue = btn * 15;
         $scope.hpValue = btn;
         $scope.atkValue = btn;
         $scope.defValue = btn;
@@ -58,6 +58,10 @@ pokeDex.controller('pokeController', function($scope) {
 		console.log("Current Page " + $scope.currentPage);
 	});
 
+
+
+
+
 //generates Pokemon ID
 function generateId(urlinput, id) {
   var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.idValue;
@@ -69,8 +73,16 @@ function generateId(urlinput, id) {
     dataType: "jsonp",
     async: true,
     success: function(data) {
-      // If the ajax call is successfull, add the name to the "name" span
-      $(id).text(data.national_id);
+      if (0 < data.national_id && data.national_id < 10) {
+        // If the ajax call is successfull, add the name to the "name" span
+        $(id).text('00' + data.national_id);
+      } else if (9 < data.national_id && data.national_id < 100) {
+        // If the ajax call is successfull, add the name to the "name" span
+        $(id).text('0' + data.national_id);
+      } else {
+        // If the ajax call is successfull, add the name to the "name" span
+        $(id).text(data.national_id);
+      }
     }
   });
 }
@@ -92,25 +104,154 @@ function generateName(urlinput, id) {
   });
 }
 
+
+//generates Pokemon TYPE
+function generateType(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.typeValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+        var types = "";
+              // Loop over all the types contained in an array
+              for (var i = 0; i < data.types.length; i++) {
+                // Set the current type we will add to the "types" span
+                var typetoAdd = (data.types[i].name);
+                // Capitalise the first letter of the current ability
+                typetoAdd = typetoAdd.toUpperCase();
+                // Append the current type to the overall "types" variable
+                types += typetoAdd + " ";
+              }
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(types);
+    }
+  });
+}
+
+
+//generates Pokemon HP
+function generateHP(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.hpValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(data.hp);
+    }
+  });
+}
+
+
+//generates Pokemon ATTACK
+function generateATK(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.atkValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(data.attack);
+    }
+  });
+}
+
+//generates Pokemon DEFENSE
+function generateDEF(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.defValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(data.defense);
+    }
+  });
+}
+
+//generates Pokemon SP ATK
+function generateSPATK(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.spatkValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(data.sp_atk);
+    }
+  });
+}
+
+//generates Pokemon SP DEF
+function generateSPDEF(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.spdefValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(data.sp_def);
+    }
+  });
+}
+
+//generates Pokemon SPEED
+function generateSPEED(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.spdValue;
+
+  $.ajax({
+    type: "GET",
+    url: generateurl,
+    // Set the data to fetch as jsonp to avoid same-origin policy
+    dataType: "jsonp",
+    async: true,
+    success: function(data) {
+      // If the ajax call is successfull, add the name to the "name" span
+      $(id).text(data.speed);
+    }
+  });
+}
+
 //generates Pokemon DESCRIPTION
-// function generateDescription(urlinput, id) {
+function generateDESCRIPTION(urlinput, id) {
+  var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.descriptionValue;
 
-// 	var addDesc = $scope.descriptionValue + 10;
-
-//   var generateurl = "http://pokeapi.co/api/v1/" + urlinput + 10;
-
-//   $.ajax({
-//     type: "GET",
-//     url: generateurl,
-//     // Set the data to fetch as jsonp to avoid same-origin policy
-//     dataType: "jsonp",
-//     async: true,
-//     success: function(data) {
-//       // If the ajax call is successfull, add the name to the "name" span
-//       $(id).html(data.description);
-//     }
-//   });
-// }
+      $.ajax({
+        type: "GET",
+        url: generateurl,
+        // Set the data to fetch as jsonp to avoid same-origin policy
+        dataType: "jsonp",
+        async: true,
+        success: function(data) {
+          // If the ajax call is successfull, add the name to the "name" span
+          $(id).text(data.description);
+        }
+      });
+}
 
 function generateSprite(urlinput, id) {
   var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.spriteValue;
@@ -132,8 +273,15 @@ function generateSprite(urlinput, id) {
 function callAPokemon() {
   generateId("pokemon/", "#id");
   generateName("pokemon/", "#name");
-  // generateDescription("description/", "#description");
+  generateDESCRIPTION("description/", "#description");
   generateSprite("sprite/", "#sprite")
+  generateType("pokemon/", "#type");
+  generateHP("pokemon/", "#hp");
+  generateATK("pokemon/", "#attack");
+  generateDEF("pokemon/", "#defense");
+  generateSPATK("pokemon/", "#sp_atk");
+  generateSPDEF("pokemon/", "#sp_def");
+  generateSPEED("pokemon/", "#speed");
 }
 
 callAPokemon();
