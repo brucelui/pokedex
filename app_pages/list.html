@@ -63,52 +63,10 @@
 
 		<!-- Pokemon List -->
 		<div class="listlist" ng-if="currentPage == 0">
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(1)">#001 Bulbasaur
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(2)">#002 Ivysaur
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(3)">#003 Venasaur
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(4)">#004 Charmander
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(5)">#005 Charmeleon
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(6)">#006 Charizard
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(7)">#007 Squirtle
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(8)">#008 Wartortle
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(9)">#009 Blastoise
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(10)">#010 Caterpie
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(11)">#011 Metapod
-			</div>
-
-			<div class="list_item">
-				<button class="list_item updateData" ng-click="updateOutput(12)">#012 Butterfree
+			<div ng-repeat="pokemon in pokemonList">
+				<div class ="list_item">
+					<button class="list_item updateData" ng-click="updateOutput(pokemon.ID)"><p>{{pokemon.name}}</p></button>
+				</div>
 			</div>
 		</div>
 	</div>
