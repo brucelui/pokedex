@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 //manages the interaction within the controller
 pokeDex.controller('pokeController', function($scope) {
-
+    $scope.pokemonList = [];
     $scope.idValue = 0;
     $scope.nameValue = 0;
     $scope.spriteValue = 0;
@@ -58,7 +58,32 @@ pokeDex.controller('pokeController', function($scope) {
 		console.log("Current Page " + $scope.currentPage);
 	});
 
+ //generates Pokemon LIST
+  function generateLIST() {
+    var listNumber = 0;
+    for (var i = 0; i >= 0 && i < 151; i++) {
+      listNumber++;
+      var generateurl = "http://pokeapi.co/api/v1/pokemon/" + listNumber;
 
+      $.ajax({
+        type: "GET",
+        url: generateurl,
+        // Set the data to fetch as jsonp to avoid same-origin policy
+        dataType: "jsonp",
+        async: true,
+        success: function(data) {
+          // If the ajax call is successfull, add the name to the "name" span
+          $scope.pokemonList.push({ID: data.national_id, name: data.name});
+          $scope.$apply();
+        }
+      });
+    };
+    // console.log(working);
+
+  }
+
+
+  generateLIST();
 
 
 
@@ -284,6 +309,4 @@ function callAPokemon() {
   generateSPEED("pokemon/", "#speed");
 }
 
-callAPokemon();
-
- });
+});
