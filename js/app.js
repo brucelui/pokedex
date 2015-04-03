@@ -15,11 +15,6 @@ pokeDex.config(['$routeProvider',
       controller: 'pokeController'
     })
 
-    .when('/025', {
-      templateUrl: 'app_pages/025.html',
-      controller: 'pokeController'
-    })
-
     .otherwise( {
     	templateUrl: 'app_pages/list.html',
       controller: 'pokeController'
