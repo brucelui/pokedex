@@ -36,7 +36,7 @@ pokeDex.controller('pokeController', function($scope) {
     };
 
 
-  $('.menuicon').click(function() {
+  $('#menuicon').click(function() {
 
   	if ($scope.currentPage == 0) {
 	    $scope.currentPage = 2;
@@ -54,8 +54,8 @@ pokeDex.controller('pokeController', function($scope) {
 
  //generates Pokemon LIST
   function generateLIST() {
-    var listNumber = 90;
-    for (var i = 0; i >= 0 && i < 15; i++) {
+    var listNumber = 0;
+    for (var i = 0; i >= 0 && i < 151; i++) {
       listNumber++;
       var generateurl = "http://pokeapi.co/api/v1/pokemon/" + listNumber;
 

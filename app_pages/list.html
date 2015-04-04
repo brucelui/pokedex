@@ -63,9 +63,14 @@
 
 		<!-- Pokemon List -->
 		<div class="listlist" ng-if="currentPage == 0">
+
 			<div ng-repeat="pokemon in pokemonList">
-				<div class ="list_item">
-					<button class="list_item updateData" ng-click="updateOutput(pokemon.ID)"><p>{{pokemon.ID}}         {{pokemon.name}}</p></button>
+				<div class="col-xs-4 col-md-2 list_item">
+				<button class="updateData" ng-click="updateOutput(pokemon.ID)">
+					#{{pokemon.ID}}
+					<br><img src="http://pokeapi.co/media/img/{{pokemon.ID}}.png">
+					{{pokemon.name}}
+				</button>
 				</div>
 			</div>
 		</div>
@@ -75,6 +80,6 @@
 		<div class="menu_body" ng-if="currentPage == 2">
 			<div class="menu_list">
 				<a href="#/">LIST</a>
-				<a href="">CAUGHT</a>
+				<a href="#/">CAUGHT</a>
 			</div>
 		</div>
