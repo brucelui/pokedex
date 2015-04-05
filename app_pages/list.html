@@ -1,85 +1,85 @@
 <!-- Main Page -->
 
-	<!-- <div class="header_space"></div> -->
+<!-- Menu -->
+<div class="menu_body animate-if" ng-if="currentPage == 0">
+	<div class="menu_list">
+		<a href="#/">LIST</a>
+		<a href="#/">CAUGHT</a>
+	</div>
+</div>
 
-	<div class="container">
+<div class="container">
 
-		<!-- Pokemon Item -->
-		<div class="itemitem" ng-if="currentPage == 1">
+	<!-- Pokemon List -->
+	<div class="listlist animate-if" ng-if="currentPage == 1">
 
-   			<div class="item_frame">
-   				<div class="item_window">
-   					<img src="" id="sprite">
-   				</div>
-   			</div>
-
-   			<div class="item_info">
-				#<span id="id">000</span>
-				</br><h1><span id="name">NAME</span></h1>
-				<p class="item_type"><span id="type">TYPE</span></p>
-
-				<p><span id="description">If you see this, API is loading...</span></p>
-			</div>
-
-			<!-- Base Stats -->
-			BASE STATS
-			<div class="item_stats">
-			<div class="stats_name">HP</div>
-				<div class="outerbar">
-					<div class="innerbar" id="hp_bar" style="width: 1%"></div><span id="hp"></span></div>
-			</div>
-
-			<div class="item_stats">
-				<div class="stats_name">ATTACK</div>
-				<div class="outerbar">
-					<div class="innerbar" id="atk_bar" style="width: 1%"></div><span id="attack"></span></div>
-			</div>	
-
-			<div class="item_stats">
-				<div class="stats_name">DEFENSE</div>
-				<div class="outerbar">
-					<div class="innerbar" id="def_bar" style="width: 1%"></div><span id="defense"></span></div>
-			</div>	
-
-			<div class="item_stats">
-				<div class="stats_name">SP ATTACK</div>
-				<div class="outerbar">
-					<div class="innerbar" id="spatk_bar" style="width: 1%"></div><span id="sp_atk"></span></div>
-			</div>	
-
-			<div class="item_stats">
-				<div class="stats_name">SP DEFENSE</div>
-				<div class="outerbar">
-					<div class="innerbar" id="spdef_bar" style="width: 1%"></div><span id="sp_def"></span></div>
-			</div>	
-
-			<div class="item_stats">
-				<div class="stats_name">SPEED</div>
-				<div class="outerbar">
-					<div class="innerbar" id="spd_bar" style="width: 1%"></div><span id="speed"></span></div>
-			</div>	
-
-		</div>
-
-		<!-- Pokemon List -->
-		<div class="listlist" ng-if="currentPage == 0">
-
-			<div ng-repeat="pokemon in pokemonList">
-				<div class="col-xs-4 col-md-2 list_item">
-				<button class="updateData" ng-click="updateOutput(pokemon.ID)">
-					#{{pokemon.ID}}
-					<br><img src="http://pokeapi.co/media/img/{{pokemon.ID}}.png">
-					{{pokemon.name}}
-				</button>
-				</div>
+		<div class="listAnimate" id="list" ng-repeat="pokemon in pokemonList">
+			<div class="col-xs-4 col-md-2 list_item">
+			<button class="updateData" ng-click="updateOutput(pokemon.ID)">
+				#{{pokemon.ID}}
+				<br><img src="http://pokeapi.co/media/img/{{pokemon.ID}}.png">
+				{{pokemon.name}}
+			</button>
 			</div>
 		</div>
 	</div>
 
-		<!-- Menu -->
-		<div class="menu_body" ng-if="currentPage == 2">
-			<div class="menu_list">
-				<a href="#/">LIST</a>
-				<a href="#/">CAUGHT</a>
+
+	<!-- Pokemon Item -->
+	<div class="itemitem animate-if" ng-swipe-right="prev()" ng-swipe-left="next()" ng-if="currentPage == 2">
+
+			<div class="item_frame">
+				<div class="item_window">
+					<img src="" id="sprite">
+				</div>
 			</div>
+
+			<div class="item_info">
+			#<span id="id">000</span>
+			</br><h1><span id="name">NAME</span></h1>
+			<p class="item_type"><span id="type">TYPE</span></p>
+
+			<p><span id="description">If you see this, API is loading...</span></p>
 		</div>
+
+		<!-- Base Stats -->
+		BASE STATS
+		<div class="item_stats">
+		<div class="stats_name">HP</div>
+			<div class="outerbar">
+				<div class="innerbar" id="hp_bar" style="width: 1%"></div><span id="hp"></span></div>
+		</div>
+
+		<div class="item_stats">
+			<div class="stats_name">ATTACK</div>
+			<div class="outerbar">
+				<div class="innerbar" id="atk_bar" style="width: 1%"></div><span id="attack"></span></div>
+		</div>	
+
+		<div class="item_stats">
+			<div class="stats_name">DEFENSE</div>
+			<div class="outerbar">
+				<div class="innerbar" id="def_bar" style="width: 1%"></div><span id="defense"></span></div>
+		</div>	
+
+		<div class="item_stats">
+			<div class="stats_name">SP ATTACK</div>
+			<div class="outerbar">
+				<div class="innerbar" id="spatk_bar" style="width: 1%"></div><span id="sp_atk"></span></div>
+		</div>	
+
+		<div class="item_stats">
+			<div class="stats_name">SP DEFENSE</div>
+			<div class="outerbar">
+				<div class="innerbar" id="spdef_bar" style="width: 1%"></div><span id="sp_def"></span></div>
+		</div>	
+
+		<div class="item_stats">
+			<div class="stats_name">SPEED</div>
+			<div class="outerbar">
+				<div class="innerbar" id="spd_bar" style="width: 1%"></div><span id="speed"></span></div>
+		</div>	
+
+	</div>
+
+</div>

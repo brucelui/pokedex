@@ -1,74 +1,145 @@
 //manages the interaction within the controller
 pokeDex.controller('pokeController', function($scope) {
   $scope.pokemonList = [];
-  $scope.idValue = 0;
   $scope.nameValue = 0;
   $scope.spriteValue = 0;
-  $scope.typeValue = 0;
   $scope.descriptionValue = 0;
-  $scope.hpValue = 0;
-  $scope.atkValue = 0;
-  $scope.defValue = 0;
-  $scope.spatkValue = 0;
-  $scope.spdefValue = 0;
-  $scope.spdValue = 0;
+  $scope.currentPage = 1;
 
-  $scope.currentPage = 0;
 
     //when click a button on list, data will update
   $scope.updateOutput = function (btn) {
-        $scope.idValue = btn;
+
         $scope.nameValue = btn;
         $scope.spriteValue = btn + 1;
-        $scope.typeValue = btn;
         $scope.descriptionValue = btn * 15;
-        $scope.hpValue = btn;
-        $scope.atkValue = btn;
-        $scope.defValue = btn;
-        $scope.spatkValue = btn;
-        $scope.spdefValue = btn;
-        $scope.spdValue = btn;
-
-        $scope.currentPage = 1;
+        $scope.currentPage = 2;
 
 		    console.log("Current Page " + $scope.currentPage);
         callAPokemon();
+        
     };
-
 
   $('#menuicon').click(function() {
 
-  	if ($scope.currentPage == 0) {
-	    $scope.currentPage = 2;
-      $scope.$apply();
-    } else if ($scope.currentPage == 1) {
-      $scope.currentPage = 0;
-      $scope.$apply();
-    } else {
-      $scope.currentPage = 0;
-      $scope.$apply();
-    }
-      console.log("Current Page " + $scope.currentPage);
-	});
+      if ($scope.currentPage == 2) {
+        $scope.currentPage = 1;
+        $scope.$apply();
+      } else if ($scope.currentPage == 1) {
+        $scope.currentPage = 0;
+        $scope.$apply();
+      } else {
+        $scope.currentPage = 1;
+        $scope.$apply();
+      }
+        console.log("Current Page " + $scope.currentPage);
+    });
+
+ //  $('#menuicon').click(function() {
+
+ //  	if ($scope.currentPage == 2) {
+	//     $scope.currentPage = 1;
+ //      $scope.$apply();
+ //    } else if ($scope.currentPage == 1) {
+ //      $scope.currentPage = 0;
+ //      $scope.$apply();
+ //    } else {
+ //      $scope.currentPage = 1;
+ //      $scope.$apply();
+ //    }
+ //      console.log("Current Page " + $scope.currentPage);
+	// });
+
+  $scope.next = function() {
+    $scope.nameValue++;
+    $scope.spriteValue++;
+    $scope.descriptionValue += 15;
+    callAPokemon();
+    console.log('working right');
+  };
+  $scope.prev = function() {
+    $scope.nameValue--;
+    $scope.spriteValue--;
+    $scope.descriptionValue -= 15;
+    callAPokemon();
+    console.log('working left');
+  };
+
+
+(function($) {
+
+// jQuery on an empty object, we are going to use this as our Queue
+var ajaxQueue = $({});
+
+  $.ajaxQueue = function( ajaxOpts ) {
+      var jqXHR,
+          dfd = $.Deferred(),
+          promise = dfd.promise();
+
+      // queue our ajax request
+      ajaxQueue.queue( doRequest );
+
+      // add the abort method
+      promise.abort = function( statusText ) {
+
+          // proxy abort to the jqXHR if it is active
+          if ( jqXHR ) {
+              return jqXHR.abort( statusText );
+          }
+
+          // if there wasn't already a jqXHR we need to remove from queue
+          var queue = ajaxQueue.queue(),
+              index = $.inArray( doRequest, queue );
+
+          if ( index > -1 ) {
+              queue.splice( index, 1 );
+          }
+
+          // and then reject the deferred
+          dfd.rejectWith( ajaxOpts.context || ajaxOpts,
+              [ promise, statusText, "" ] );
+
+          return promise;
+      };
+
+      // run the actual query
+      function doRequest( next ) {
+          jqXHR = $.ajax( ajaxOpts )
+              .then( next, next )
+              .done( dfd.resolve )
+              .fail( dfd.reject );
+      }
+
+      return promise;
+  };
+})(jQuery);
+
+
 
 
  //generates Pokemon LIST
   function generateLIST() {
     var listNumber = 0;
-    for (var i = 0; i >= 0 && i < 151; i++) {
+    for (var i = 0; i >= 0 && i < 15; i++) {
       listNumber++;
       var generateurl = "http://pokeapi.co/api/v1/pokemon/" + listNumber;
-
-      $.ajax({
+      var count = 0;
+      $.ajaxQueue({
         type: "GET",
         url: generateurl,
         // Set the data to fetch as jsonp to avoid same-origin policy
         dataType: "jsonp",
         async: true,
         success: function(data) {
-          // If the ajax call is successfull, add the name to the "name" span
-          $scope.pokemonList.push({ID: data.national_id, name: data.name});
-          $scope.$apply();
+          count++;
+            console.log(count);
+            //if (data.national_id == count){
+              // If the ajax call is successfull, add the name to the "name" span
+              $scope.pokemonList.push({ID: data.national_id, name: data.name});
+             // if (data.national_id == listNumber){
+                $scope.$apply();
+              //}
+            //}
         }
       });
     };

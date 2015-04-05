@@ -1,0 +1,30 @@
+/*ANIMATIONS.CSS*/
+
+.listAnimate.ng-enter,
+.listAnimate.ng-leave.ng-leave-active {
+	-webkit-transition: 0.3s;
+			transition: 0.3s;
+	transform: scale(1);
+	transform: rotate(-180deg, 180deg);
+	opacity: 0;
+}
+.listAnimate.ng-leave,
+.listAnimate.ng-enter.ng-enter-active {
+	transform: scale(1);
+	transform: rotate(0deg, 0deg);
+	opacity: 1;
+}
+
+
+.animate-if.ng-enter {
+	-webkit-transition: 1s ease;
+			transition: 1s ease;
+	transform: translateX(-400px);
+
+	opacity: 0;
+}
+
+.animate-if.ng-enter.ng-enter-active {
+	transform: translateX(0px);
+	opacity: 1;
+}

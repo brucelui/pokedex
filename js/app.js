@@ -2,7 +2,7 @@
 
 var answerValue = 0;
 
-var pokeDex = angular.module('pokeDex', ['ngRoute'])
+var pokeDex = angular.module('pokeDex', ['ngRoute', 'ngAnimate', 'ngTouch'])
 
 /* Routes */
 
