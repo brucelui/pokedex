@@ -208,6 +208,32 @@ a:hover, a:visited, a:active {
 	background-color: #FFFFFF;
 }
 
+input[type=checkbox] {
+	float: right;
+	display:none;
+}
+ 
+input[type=checkbox] + label, input[type=checkbox]:checked + label {
+	height: 30px;
+	width: 30px;
+	display:inline-block;
+	padding: 0px;
+	border-radius: 40px;
+    box-shadow: 0px 4px #de4a31;
+	float: right;
+}
+
+input[type=checkbox] + label {
+	background: url("../images/pokeball_unchecked.jpg");
+	background-size: cover;
+	border: 3px solid #666666;
+}
+input[type=checkbox]:checked + label {
+	background: url("../images/pokeball_checked.jpg");
+	background-size: cover;
+	border: 3px solid #232323;
+}
+
 /* ---- STUFF ---- */
 
 hr {
