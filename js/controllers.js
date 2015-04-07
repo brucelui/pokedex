@@ -135,7 +135,7 @@ var ajaxQueue = $({});
 
 
   //generates Pokemon information
-  function generatePokemon(urlinput, id, name, type, hp, hpID, atk, atkID, def, defID, spatk, spatkID, spdef, spdefID, spd, spdID) {
+  function generatePokemon(urlinput, id, name, type, type2, hp, hpID, atk, atkID, def, defID, spatk, spatkID, spdef, spdefID, spd, spdID) {
     var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.nameValue;
 
     $.ajax({
@@ -161,18 +161,141 @@ var ajaxQueue = $({});
         $(name).text(data.name);
 
         //FOR GENERATING TYPES
-        var types = "";
-          //Loop over all the types contained in an array
-          for (var i = 0; i < data.types.length; i++) {
-            //Set the current type we will add to the "types" span
-            var typetoAdd = (data.types[i].name);
-            //Capitalise the letters of the current type
-            typetoAdd = typetoAdd.toUpperCase();
-            //Append the current type to the overall "types" variable
-            types += typetoAdd + " ";
+        var firstType = "";
+        var secondType = "";
+        //Loop over all the types contained in an array
+        for (var i = 0; i < data.types.length; i++) {
+          //Set the current type we will add to the "types" span
+          var typetoAdd1 = (data.types[i].name);
+          //Capitalise the letters of the current type
+          typetoAdd1 = typetoAdd1.toUpperCase();
+          //Append the current type to the overall "types" variable
+          firstType += typetoAdd1.toString();
+          console.log(firstType);
+          //Add the types
+          if (firstType == 'NORMAL'){
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#FFF4E9', "color": '#665138', "display": 'inline-block'});
+          } else if (firstType == 'FIGHTING') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#EF7320', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'FLYING') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#5082FF', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'POISON') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#B139B7', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'GROUND') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#A87B48', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'ROCK') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#665138', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'BUG') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#7AC943', "color": '#665138', "display": 'inline-block'});
+          } else if (firstType == 'GHOST') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#535399', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'STEEL') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#666666', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'FIRE') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#FF0000', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'WATER') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#0060B7', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'GRASS') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#689F49', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'ELECTRIC') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#FFFF00', "color": '#665138', "display": 'inline-block'});
+          } else if (firstType == 'PSYCHIC') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#F66FA0', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'ICE') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#6BE3E8', "color": '#665138', "display": 'inline-block'});
+          } else if (firstType == 'DRAGON') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#6A58DB', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'DARK') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#303030', "color": '#FFFFFF', "display": 'inline-block'});
+          } else if (firstType == 'FAIRY') {
+            $(type).html("<div class='item_type' id='typeBoxID'>"+ firstType +"</div>");
+            $(typeBoxID).css({"background-color": '#FF99D6', "color": '#FFFFFF', "display": 'inline-block'});
           }
-        //Add the types
-        $(type).text(types);
+
+          if (data.types.length == 2){
+            var typetoAdd2 = (data.types[i + 1].name);
+            //Capitalise the letters of the current type
+            typetoAdd2 = typetoAdd2.toUpperCase();
+            //Append the current type to the overall "types" variable
+            secondType += typetoAdd2.toString();
+            console.log(data.types.length);
+          
+            if (secondType == 'NORMAL'){
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#FFF4E9', "color": '#665138', "display": 'inline-block'});
+            } else if (secondType == 'FIGHTING') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#EF7320', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'FLYING') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#5082FF', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'POISON') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#B139B7', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'GROUND') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#A87B48', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'ROCK') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#665138', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'BUG') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#7AC943', "color": '#665138', "display": 'inline-block'});
+            } else if (secondType == 'GHOST') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#535399', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'STEEL') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#666666', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'FIRE') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#FF0000', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'WATER') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#0060B7', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'GRASS') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#689F49', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'ELECTRIC') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#FFFF00', "color": '#665138', "display": 'inline-block'});
+            } else if (secondType == 'PSYCHIC') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#F66FA0', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'ICE') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#6BE3E8', "color": '#665138', "display": 'inline-block'});
+            } else if (secondType == 'DRAGON') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#6A58DB', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'DARK') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#303030', "color": '#FFFFFF', "display": 'inline-block'});
+            } else if (secondType == 'FAIRY') {
+              $(type2).html("<div class='item_type2' id='typeBoxID2'>"+ secondType +"</div>");
+              $(typeBoxID2).css({"background-color": '#FF99D6', "color": '#FFFFFF', "display": 'inline-block'});
+            }
+          } else {
+            $(type2).html("<div class='' id='typeBoxID2'></div>");
+            $(typeBoxID2).css({});
+          }
 
         //FOR GENERATING HP
         if (data.hp >= 190){
@@ -203,6 +326,9 @@ var ajaxQueue = $({});
         $(spd).text(data.speed);
         $(spdID).css({"width": data.speed});
 
+        //FOR GENERATING BOX
+        $(boxbox1).html("<input type='checkbox' value='"+ (data.national_id + 1) +"' id='caughtBox"+ (data.national_id + 1) +"' ng-model='checkboxModel.value1'><label for='caughtBox"+ (data.national_id + 1) +"'></label>");
+        }
       }
     });
   }
@@ -264,11 +390,31 @@ var ajaxQueue = $({});
 
   //gathers data
   function callAPokemon() {
-    generatePokemon("pokemon/", "#id", "#name", "#type", "#hp", "#hp_bar", "#attack", "#atk_bar", "#defense", "#def_bar", "#sp_atk", "#spatk_bar", "#sp_def", "#spdef_bar", "#speed", "#spd_bar");
+    generatePokemon("pokemon/", "#id", "#name", "#type", "#type2", "#hp", "#hp_bar", "#attack", "#atk_bar", "#defense", "#def_bar", "#sp_atk", "#spatk_bar", "#sp_def", "#spdef_bar", "#speed", "#spd_bar");
     generateDESCRIPTION("#description");
     generateSprite("sprite/", "#sprite")
 
   }
+
+
+$scope.checkboxModel = {
+  value1 : false
+};
+
+
+var checked, checkedValues, boxboxArray = new Array();
+$(document).on("change", "input[type=checkbox]", function(e) {
+
+  checked = $("input[type=checkbox]:checked");
+  checkedValues = checked.map(function(i) { 
+    return $(this).val();
+  }).get();
+  checkedValues.join();
+  console.log(boxboxArray);
+});
+
+
+
 
 //generates pokemon list
 generateLIST();
