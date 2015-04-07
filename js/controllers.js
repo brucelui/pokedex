@@ -111,7 +111,7 @@ var ajaxQueue = $({});
  //generates Pokemon LIST
   function generateLIST() {
     var listNumber = 0;
-    for (var i = 0; i >= 0 && i < 11; i++) {
+    for (var i = 0; i >= 0 && i < 151; i++) {
       listNumber++;
       var generateurl = "http://pokeapi.co/api/v1/pokemon/" + listNumber;
       var count = 0;
