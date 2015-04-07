@@ -7,19 +7,19 @@ pokeDex.controller('pokeController', function($scope) {
   $scope.currentPage = 1;
 
 
-    //when click a button on list, data will update
+  //when click a button on list, data will update
   $scope.updateOutput = function (btn) {
 
         $scope.nameValue = btn;
         $scope.spriteValue = btn + 1;
-        $scope.descriptionValue = btn * 15;
+        $scope.descriptionValue = btn;
         $scope.currentPage = 2;
 
 		    console.log("Current Page " + $scope.currentPage);
         callAPokemon();
-        
     };
 
+  //when menu icon is clicked, change currentPage
   $('#menuicon').click(function() {
 
       if ($scope.currentPage == 2) {
@@ -35,37 +35,28 @@ pokeDex.controller('pokeController', function($scope) {
         console.log("Current Page " + $scope.currentPage);
     });
 
- //  $('#menuicon').click(function() {
-
- //  	if ($scope.currentPage == 2) {
-	//     $scope.currentPage = 1;
- //      $scope.$apply();
- //    } else if ($scope.currentPage == 1) {
- //      $scope.currentPage = 0;
- //      $scope.$apply();
- //    } else {
- //      $scope.currentPage = 1;
- //      $scope.$apply();
- //    }
- //      console.log("Current Page " + $scope.currentPage);
-	// });
-
+  //swiping left to change to the next pokemon
   $scope.next = function() {
-    $scope.nameValue++;
-    $scope.spriteValue++;
-    $scope.descriptionValue += 15;
-    callAPokemon();
-    console.log('working right');
+    if ($scope.nameValue <= 150) {
+      $scope.nameValue++;
+      $scope.spriteValue++;
+      $scope.descriptionValue++;
+      callAPokemon();
+      console.log('working right');
+    };
   };
+  //swiping right to change to the previous pokemon
   $scope.prev = function() {
-    $scope.nameValue--;
-    $scope.spriteValue--;
-    $scope.descriptionValue -= 15;
-    callAPokemon();
-    console.log('working left');
+    if (2 <= $scope.nameValue) {
+      $scope.nameValue--;
+      $scope.spriteValue--;
+      $scope.descriptionValue--;
+      callAPokemon();
+      console.log('working left');
+    };
   };
 
-
+//This function creates a queue for ajax calls so that the pokemon list would not go out of order
 (function($) {
 
 // jQuery on an empty object, we are going to use this as our Queue
@@ -120,10 +111,11 @@ var ajaxQueue = $({});
  //generates Pokemon LIST
   function generateLIST() {
     var listNumber = 0;
-    for (var i = 0; i >= 0 && i < 15; i++) {
+    for (var i = 0; i >= 0 && i < 11; i++) {
       listNumber++;
       var generateurl = "http://pokeapi.co/api/v1/pokemon/" + listNumber;
       var count = 0;
+      //using the ajaxQueue
       $.ajaxQueue({
         type: "GET",
         url: generateurl,
@@ -132,22 +124,17 @@ var ajaxQueue = $({});
         async: true,
         success: function(data) {
           count++;
-            console.log(count);
-            //if (data.national_id == count){
-              // If the ajax call is successfull, add the name to the "name" span
-              $scope.pokemonList.push({ID: data.national_id, name: data.name});
-             // if (data.national_id == listNumber){
-                $scope.$apply();
-              //}
-            //}
+          console.log(count);
+          // If the ajax call is successfull, add to pokemonList array and apply
+          $scope.pokemonList.push({ID: data.national_id, name: data.name});
+          $scope.$apply();
         }
       });
     };
-    // console.log(working);
   }
 
 
-  //generates Pokemon
+  //generates Pokemon information
   function generatePokemon(urlinput, id, name, type, hp, hpID, atk, atkID, def, defID, spatk, spatkID, spdef, spdefID, spd, spdID) {
     var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.nameValue;
 
@@ -160,13 +147,13 @@ var ajaxQueue = $({});
       success: function(data) {
         //FOR GENERATING ID
         if (0 < data.national_id && data.national_id < 10) {
-            // If the ajax call is successfull, add the name to the "name" span
+            //add 00 before the ID
             $(id).text('00' + data.national_id);
           } else if (9 < data.national_id && data.national_id < 100) {
-            // If the ajax call is successfull, add the name to the "name" span
+            //add 0 before the ID
             $(id).text('0' + data.national_id);
           } else {
-            // If the ajax call is successfull, add the name to the "name" span
+            //add the ID
             $(id).text(data.national_id);
           }
 
@@ -175,41 +162,46 @@ var ajaxQueue = $({});
 
         //FOR GENERATING TYPES
         var types = "";
-          // Loop over all the types contained in an array
+          //Loop over all the types contained in an array
           for (var i = 0; i < data.types.length; i++) {
-            // Set the current type we will add to the "types" span
+            //Set the current type we will add to the "types" span
             var typetoAdd = (data.types[i].name);
-            // Capitalise the letters of the current ability
+            //Capitalise the letters of the current type
             typetoAdd = typetoAdd.toUpperCase();
-            // Append the current type to the overall "types" variable
+            //Append the current type to the overall "types" variable
             types += typetoAdd + " ";
           }
-        // If the ajax call is successfull, add the name to the "name" span
+        //Add the types
         $(type).text(types);
 
         //FOR GENERATING HP
-        $(hp).text(data.hp);
-        $(hpID).css({"width": data.hp*0.7});
+        if (data.hp >= 190){
+          $(hp).text('*'+ data.hp);
+          $(hpID).css({"width": 180});
+        } else {
+          $(hp).text(data.hp);
+          $(hpID).css({"width": data.hp});
+        }
 
         //FOR GENERATING ATTACK
         $(atk).text(data.attack);
-        $(atkID).css({"width": data.attack*0.7});
+        $(atkID).css({"width": data.attack});
 
         //FOR GENERATING DEFENSE
         $(def).text(data.defense);
-        $(defID).css({"width": data.defense*0.7});
+        $(defID).css({"width": data.defense});
 
         //FOR GENERATING SP ATK
         $(spatk).text(data.sp_atk);
-        $(spatkID).css({"width": data.sp_atk*0.7});
+        $(spatkID).css({"width": data.sp_atk});
 
         //FOR GENERATING SP DEF
         $(spdef).text(data.sp_def);
-        $(spdefID).css({"width": data.sp_def*0.7});
+        $(spdefID).css({"width": data.sp_def});
 
         //FOR GENERATING SPEED
         $(spd).text(data.speed);
-        $(spdID).css({"width": data.speed*0.7});
+        $(spdID).css({"width": data.speed});
 
       }
     });
@@ -217,23 +209,42 @@ var ajaxQueue = $({});
 
 
   //generates Pokemon DESCRIPTION
-  function generateDESCRIPTION(urlinput, id) {
-    var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.descriptionValue;
+  function generateDESCRIPTION(id) {
+    var generateurl = "http://pokeapi.co/api/v1/pokemon/" + $scope.descriptionValue;
 
-        $.ajax({
-          type: "GET",
-          url: generateurl,
-          // Set the data to fetch as jsonp to avoid same-origin policy
-          dataType: "jsonp",
-          async: true,
-          success: function(data) {
-            // If the ajax call is successfull, add the name to the "name" span
-            $(id).text(data.description);
-          }
-        });
+    $.ajax({
+      type: "GET",
+      url: generateurl,
+      // Set the data to fetch as jsonp to avoid same-origin policy
+      dataType: "jsonp",
+      async: true,
+      success: function(data) {
+        var descriptionLink = "";
+          //Loop over all the descriptions contained in an array
+          for (var i = 0; i < 1; i++) {
+            //Adding the first description link
+            var descToAdd = (data.descriptions[i].resource_uri);
+            //Append the current description to the descriptionLink variable
+            descriptionLink += descToAdd;
+            //generate a 2nd URL for the ajax call to get the description text
+            var generateurl2 = "http://pokeapi.co" + descriptionLink;
+            $.ajax({
+              type: "GET",
+              url: generateurl2,
+              //Set the data to fetch as jsonp to avoid same-origin policy
+              dataType: "jsonp",
+              async: true,
+              success: function(data) {
+                //If the ajax call is successfull, add the description to the "description" span
+                $(id).text(data.description);
+              }
+             });
+          };
+        }
+    });
   }
 
-
+  //generating the Sprite for pokemon
   function generateSprite(urlinput, id) {
     var generateurl = "http://pokeapi.co/api/v1/" + urlinput + $scope.spriteValue;
 
@@ -254,8 +265,9 @@ var ajaxQueue = $({});
   //gathers data
   function callAPokemon() {
     generatePokemon("pokemon/", "#id", "#name", "#type", "#hp", "#hp_bar", "#attack", "#atk_bar", "#defense", "#def_bar", "#sp_atk", "#spatk_bar", "#sp_def", "#spdef_bar", "#speed", "#spd_bar");
-    generateDESCRIPTION("description/", "#description");
+    generateDESCRIPTION("#description");
     generateSprite("sprite/", "#sprite")
+
   }
 
 //generates pokemon list

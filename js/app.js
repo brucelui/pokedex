@@ -20,29 +20,3 @@ pokeDex.config(['$routeProvider',
       controller: 'pokeController'
     });
 }]);
-
-
-
-// $(window).load(function() {
-//   var pokeItem = function(){
-//     $('.itemitem').hammer().on('tap', function(){
-//       $scope.nameValue++;
-//       $scope.spriteValue++;
-//       $scope.descriptionValue += 15;
-//       $scope.$apply();
-//       callAPokemon();
-//       console.log('working'); 
-//     });
-
-//     $(".itemitem").hammer().on('swiperight', function(){
-//       $scope.nameValue--;
-//       $scope.spriteValue--;
-//       $scope.descriptionValue -= 15;
-//       $scope.$apply();
-//       callAPokemon();
-//       console.log('working right');
-//     });
-//     console.log('ahhhhh');
-//   };
-// pokeItem();
-// });
