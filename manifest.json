@@ -1,0 +1,16 @@
+{
+  "short_name": "Pokedex",
+  "name": "Pokedex",
+  "icons": [
+    {
+      "src": "/images/pokeball_checked.jpg",
+      "type": "image/png",
+      "sizes": "200x200"
+    }
+  ],
+  "start_url": "/maps/?source=pwa",
+  "background_color": "#D32F2F",
+  "display": "standalone",
+  "scope": "/maps/",
+  "theme_color": "#D32F2F"
+}
